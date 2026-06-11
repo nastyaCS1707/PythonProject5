@@ -1,3 +1,4 @@
+import allure
 import pytest
 
 from selenium import webdriver
@@ -14,3 +15,13 @@ def driver():
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
+
+@pytest.fixture
+@allure.step("Подготовка валидных данных")
+def valid_data():
+    return "tomsmith", "SuperSecretPassword!"
+
+@pytest.fixture
+@allure.step("Подготовка невалидных данных")
+def invalid_data():
+    return "smithtom", "SuperSecretPassword!"
